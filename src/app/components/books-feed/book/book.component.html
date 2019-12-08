@@ -25,7 +25,7 @@
     <div class="book__preview-info-summary">
       <span>Summary</span
       >{{
-        book.volumeInfo.description
+        book.volumeInfo?.description
           ? (book.volumeInfo.description | summary)
           : "Not Available"
       }}
