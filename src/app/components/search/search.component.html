@@ -25,7 +25,7 @@
 <mat-spinner *ngIf="isLoading"></mat-spinner>
 <app-books-feed [booksList]="booksList"> </app-books-feed>
 <mat-paginator
-  *ngIf="booksList"
+  *ngIf="booksList.length !== 0"
   [length]="totalBooks"
   [pageSize]="booksPerPage"
   [pageSizeOptions]="pageSizeOptions"

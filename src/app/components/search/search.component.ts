@@ -39,6 +39,10 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.userName = this.auth.getUserName();
+    this.books.getBooksList().subscribe((books: Book[]) => {
+      this.booksList = books;
+      this.cd.markForCheck();
+    });
   }
   ngOnDestroy() {
     if (this.booksSub) {
@@ -52,10 +56,12 @@ export class SearchComponent implements OnInit, OnDestroy {
         .getBooks(this.booksPerPage, this.currentPage, this.searchText)
         .subscribe((books: BookResult) => {
           this.isLoading = false;
-
           if (books.totalItems === 0) {
             this.dialog.openDialog(MASSAGE, BOOK_NOT_FOUND);
+            return;
           }
+          this.books.addToBooksList(books.items);
+
           this.booksList = books.items;
           this.cd.markForCheck();
         });

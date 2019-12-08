@@ -15,7 +15,9 @@ import { Book, BookResult } from "../components/books-feed/Book.interface";
 export class BooksService {
   BASE_URL = "https://www.googleapis.com/books/v1/volumes";
   wishListListener: BehaviorSubject<Book[]> = new BehaviorSubject([]);
+  booksListener: BehaviorSubject<Book[]> = new BehaviorSubject([]);
   wishList: Book[] = [];
+  booksList: Book[] = [];
   constructor(private http: HttpClient, private dialog: DialogService) {}
 
   getBooks(
@@ -30,7 +32,13 @@ export class BooksService {
     params = params.append("maxResults", booksPerPage.toString());
     return this.http.get<BookResult>(this.BASE_URL, { params });
   }
-
+  addToBooksList(books: Book[]) {
+    this.booksList = books;
+    this.booksListener.next([...this.booksList]);
+  }
+  getBooksList() {
+    return this.booksListener.asObservable();
+  }
   addToWishList(bookId: Book): void {
     const isInWish = this.wishList.find(b => b.id === bookId.id) ? true : false;
     if (!isInWish) {
