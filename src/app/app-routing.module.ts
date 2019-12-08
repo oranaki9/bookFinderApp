@@ -1,5 +1,4 @@
 import { AuthGuard } from "./services/Auth.guard";
-import { WishListComponent } from "./components/wish-list/wish-list.component";
 import { WelcomeComponent } from "./components/welcome/welcome.component";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
