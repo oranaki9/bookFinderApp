@@ -1,0 +1,14 @@
+.dialog__container {
+  height: 20rem;
+  overflow: auto;
+}
+.book__title {
+  font-weight: 500;
+  margin-bottom: 0.7rem;
+}
+span {
+  font-weight: 500;
+}
+.line__end::after {
+  content: ".";
+}

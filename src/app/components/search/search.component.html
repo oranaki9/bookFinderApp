@@ -1,0 +1,33 @@
+<div class="welcome__user-text">
+  Welcome <span *ngIf="userName">{{ userName }}</span>
+</div>
+<div class="flex__container">
+  <div class="books__finder-title">Books Finder</div>
+  <p class="search__flex-container">
+    <input
+      class="search__input"
+      placeholder="Search books!"
+      type="text"
+      [(ngModel)]="searchText"
+    />
+
+    <button
+      class="search__btn"
+      mat-raised-button
+      color="accent"
+      (click)="searchBook()"
+    >
+      Search
+    </button>
+  </p>
+</div>
+
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<app-books-feed [booksList]="booksList"> </app-books-feed>
+<mat-paginator
+  *ngIf="booksList"
+  [length]="totalBooks"
+  [pageSize]="booksPerPage"
+  [pageSizeOptions]="pageSizeOptions"
+  (page)="onChangePage($event)"
+></mat-paginator>

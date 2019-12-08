@@ -1,0 +1,19 @@
+<div class="wishlist__title">Wish List</div>
+
+<ng-template
+  *ngIf="booksWishList.length !== 0; then bookItem; else wishListIsEmpty"
+>
+</ng-template>
+<ng-template #bookItem>
+  <div class="flex__container">
+    <app-book
+      *ngFor="let book of booksWishList"
+      [book]="book"
+      (click)="bookClicked(book)"
+    >
+    </app-book>
+  </div>
+</ng-template>
+<ng-template #wishListIsEmpty>
+  <p class="wishlist__empty">No books in wishList yet.</p>
+</ng-template>

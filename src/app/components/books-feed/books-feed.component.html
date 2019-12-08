@@ -1,0 +1,5 @@
+<div *ngIf="booksList?.length" class="books__feed-container">
+  <div *ngFor="let book of booksList">
+    <app-book [book]="book" (click)="bookClicked(book)"></app-book>
+  </div>
+</div>

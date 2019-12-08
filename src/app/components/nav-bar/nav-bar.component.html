@@ -1,0 +1,65 @@
+<div
+  class="backdrop"
+  *ngIf="showFiller"
+  (click)="drawer.toggle(); showFiller = !showFiller"
+></div>
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <i
+      class="material-icons close__nav-btn"
+      (click)="showFiller = !showFiller; drawer.toggle()"
+    >
+      close
+    </i>
+
+    <p class="app__title-mobile-nav">Book Finder</p>
+    <hr />
+    <div class="flex__container-mobile">
+      <button
+        mat-button
+        [routerLink]="['/search']"
+        routerLinkActive="router-link-active"
+        (click)="showFiller = !showFiller; drawer.toggle()"
+      >
+        search
+      </button>
+      <button
+        mat-button
+        [routerLink]="['/wishList']"
+        routerLinkActive="router-link-active"
+        (click)="showFiller = !showFiller; drawer.toggle()"
+      >
+        WishList
+      </button>
+    </div>
+  </mat-drawer>
+</mat-drawer-container>
+<mat-toolbar>
+  <i
+    class="material-icons mobile__nav-icon"
+    (click)="showFiller = !showFiller; drawer.toggle()"
+  >
+    dehaze
+  </i>
+  <div class="flex__container-desktop">
+    <button class="app__title" mat-button>
+      Book Finder
+    </button>
+    <div class="nav__buttons-desktop">
+      <button
+        mat-button
+        [routerLink]="['/search']"
+        routerLinkActive="router-link-active"
+      >
+        search
+      </button>
+      <button
+        mat-button
+        [routerLink]="['/wishList']"
+        routerLinkActive="router-link-active"
+      >
+        WishList
+      </button>
+    </div>
+  </div>
+</mat-toolbar>

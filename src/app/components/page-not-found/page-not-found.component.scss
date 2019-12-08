@@ -1,0 +1,15 @@
+.flex__container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+p {
+  font-size: 1rem;
+  font-weight: bold;
+  color: darkblue;
+}
+@media (min-width: 30rem) {
+  p {
+    font-size: 4rem;
+  }
+}

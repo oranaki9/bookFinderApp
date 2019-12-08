@@ -1,0 +1,17 @@
+<div class="flex__container">
+  <form [formGroup]="userForm" (submit)="logIn()">
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        placeholder="Enter user name."
+        formControlName="userName"
+      />
+      <mat-error *ngIf="userName.invalid">User name required.</mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button class="signin__btn" type="submit" color="primary">
+      Log In
+    </button>
+  </form>
+</div>

@@ -1,0 +1,81 @@
+.backdrop {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9;
+}
+mat-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 8;
+  background: rgba(0, 0, 0, 0.5);
+}
+mat-drawer-container {
+  z-index: 10;
+  position: fixed;
+}
+mat-drawer {
+  width: 80%;
+}
+.flex__container-desktop {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.flex__container-mobile {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.close__nav-btn {
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  color: white;
+  font-size: 30px;
+}
+.app__title {
+  font-size: 2rem;
+}
+hr {
+  color: white;
+}
+.app__title-mobile-nav {
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+}
+.nav__buttons-desktop {
+  display: none;
+}
+mat-drawer {
+  background: rgba(0, 0, 0, 0.5);
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+
+button {
+  color: white;
+}
+@media (min-width: 30rem) {
+  .mobile__nav-icon {
+    display: none;
+  }
+  .nav__buttons-desktop {
+    display: block;
+  }
+  mat-drawer-container,
+  .backdrop {
+    display: none;
+  }
+}
+@media (max-width: 15rem) {
+  .app__title {
+    font-size: 1.5rem;
+  }
+}

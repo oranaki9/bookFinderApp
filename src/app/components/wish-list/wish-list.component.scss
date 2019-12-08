@@ -1,0 +1,18 @@
+.flex__container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.wishlist__title {
+  font-weight: bold;
+  font-size: 2rem;
+  color: rgb(4, 4, 180);
+  width: 100%;
+  text-align: center;
+}
+.wishlist__empty {
+  width: 100%;
+  text-align: center;
+}

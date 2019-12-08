@@ -1,0 +1,49 @@
+<div class="dialog__container">
+  <div class="book__title">{{ book.volumeInfo.title }}</div>
+  <div>
+    <img [src]="getBookImg()" />
+  </div>
+  <div class="line__end">
+    <span>Author: </span
+    >{{ book.volumeInfo.authors ? book.volumeInfo.authors : "Not Available" }}
+  </div>
+  <div class="line__end">
+    <span>Publisher: </span>
+    {{
+      book.volumeInfo.publisher ? book.volumeInfo.publisher : "Not Available"
+    }}
+  </div>
+  <div class="line__end">
+    <span>Pages: </span
+    >{{
+      book.volumeInfo.pageCount ? book.volumeInfo.pageCount : "Not Available"
+    }}
+  </div>
+  <div class="line__end">
+    <span>Published date: </span>{{ book.volumeInfo.publishedDate }}
+  </div>
+  <div>
+    <span>Summary: </span
+    >{{
+      book.volumeInfo.description
+        ? book.volumeInfo.description
+        : "Not Available"
+    }}
+  </div>
+  <button
+    *ngIf="mode === 'isWish'"
+    mat-raised-button
+    color="accent"
+    (click)="removeFromWishList()"
+  >
+    remove from wishList
+  </button>
+  <button
+    *ngIf="mode === 'isFeed'"
+    mat-raised-button
+    color="accent"
+    (click)="addToWishList()"
+  >
+    Add to wishList
+  </button>
+</div>

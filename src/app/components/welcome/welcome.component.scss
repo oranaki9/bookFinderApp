@@ -1,0 +1,23 @@
+.flex__container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // margin-top: -5rem;
+}
+form {
+  padding: 5rem;
+  margin: 0 1rem;
+  border: solid black 1px;
+  background: white;
+  display: block;
+}
+.signin__btn {
+  width: 100%;
+}
+@media (min-width: 27rem) {
+  .signin__btn {
+    width: auto;
+  }
+}

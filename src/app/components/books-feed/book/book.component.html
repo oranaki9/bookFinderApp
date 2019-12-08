@@ -1,0 +1,34 @@
+
+<div class="book__preview-container">
+  <div class="published__date-badge">
+    {{
+      book.volumeInfo.publishedDate.length === 4
+        ? book.volumeInfo.publishedDate
+        : (book.volumeInfo.publishedDate | date: "yyyy")
+    }}
+  </div>
+  <div class="book__preview-img">
+    <img [src]="getBookImg()" />
+  </div>
+  <div class="book__preview-info">
+    <div class="book__preview-info-title">{{ book.volumeInfo.title }}</div>
+    <div class="book__preview-info-authors">
+      <span>Author</span
+      >{{ book.volumeInfo.authors ? book.volumeInfo.authors : "Not Available" }}
+    </div>
+    <div class="book__preview-info-publisher">
+      <span>Publisher</span
+      >{{
+        book.volumeInfo.publisher ? book.volumeInfo.publisher : "Not Available"
+      }}
+    </div>
+    <div class="book__preview-info-summary">
+      <span>Summary</span
+      >{{
+        book.volumeInfo.description
+          ? (book.volumeInfo.description | summary)
+          : "Not Available"
+      }}
+    </div>
+  </div>
+</div>
