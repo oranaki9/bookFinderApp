@@ -6,7 +6,7 @@ import {
   ChangeDetectionStrategy
 } from "@angular/core";
 import { MAT_DIALOG_DATA } from "@angular/material";
-import { BooksService } from "src/app/services/books.service";
+import { BooksService } from 'src/app/services/books.service';
 
 @Component({
   selector: "app-book-info",
@@ -31,7 +31,7 @@ export class BookInfoComponent implements OnInit {
     this.books.removeFromWishList(this.data.payload.book.id);
   }
   getBookImg() {
-    const bookNotFoundPath = "../../../../assets/book-img-not-fround.jpg";
+    const bookNotFoundPath = "assets/book-img-not-fround.jpg";
     return this.book.volumeInfo.imageLinks
       ? this.book.volumeInfo.imageLinks.smallThumbnail
       : bookNotFoundPath;
