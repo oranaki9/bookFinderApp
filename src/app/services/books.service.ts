@@ -16,10 +16,19 @@ export class BooksService {
   BASE_URL = "https://www.googleapis.com/books/v1/volumes";
   wishListListener: BehaviorSubject<Book[]> = new BehaviorSubject([]);
   booksListener: BehaviorSubject<Book[]> = new BehaviorSubject([]);
+  bookNameListener: BehaviorSubject<string> = new BehaviorSubject("");
+  bookName: string;
   wishList: Book[] = [];
   booksList: Book[] = [];
   constructor(private http: HttpClient, private dialog: DialogService) {}
 
+  addBookName(bookName: string) {
+    this.bookName = bookName;
+    this.bookNameListener.next(this.bookName);
+  }
+  getBookName(){
+    return this.bookNameListener.asObservable()
+  }
   getBooks(
     booksPerPage: number,
     currentPage: number,

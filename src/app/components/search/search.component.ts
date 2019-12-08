@@ -31,6 +31,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   isLoading = false;
   booksSub: Subscription;
   bookListSub: Subscription;
+  bookNameSub: Subscription;
   constructor(
     private dialog: DialogService,
     private books: BooksService,
@@ -40,6 +41,9 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.userName = this.auth.getUserName();
+    this.bookNameSub = this.books.getBookName().subscribe(bookName => {
+      this.searchText = bookName;
+    });
     this.bookListSub = this.books.getBooksList().subscribe((books: Book[]) => {
       this.booksList = books;
       this.cd.markForCheck();
@@ -50,8 +54,10 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.booksSub.unsubscribe();
     }
     this.bookListSub.unsubscribe();
+    this.bookNameSub.unsubscribe();
   }
   searchBook() {
+    this.books.addBookName(this.searchText);
     if (this.searchText.length !== 0) {
       this.isLoading = true;
       this.booksSub = this.books
@@ -76,6 +82,8 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.booksSub = this.books
       .getBooks(this.booksPerPage, this.currentPage, this.searchText)
       .subscribe((books: BookResult) => {
+        this.books.addToBooksList(books.items);
+
         this.isLoading = false;
         this.booksList = books.items;
         this.cd.markForCheck();
