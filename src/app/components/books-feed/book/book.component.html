@@ -2,7 +2,7 @@
 <div class="book__preview-container">
   <div class="published__date-badge">
     {{
-      book.volumeInfo.publishedDate.length === 4
+      book.volumeInfo.publishedDate?.length === 4
         ? book.volumeInfo.publishedDate
         : (book.volumeInfo.publishedDate | date: "yyyy")
     }}
