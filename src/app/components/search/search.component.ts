@@ -48,6 +48,10 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.booksList = books;
       this.cd.markForCheck();
     });
+    this.books.getPaginationInfo().subscribe(paginationInfo => {
+      this.currentPage = paginationInfo.currentPage;
+      this.booksPerPage = paginationInfo.bookPerPage;
+    });
   }
   ngOnDestroy() {
     if (this.booksSub) {
@@ -57,6 +61,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.bookNameSub.unsubscribe();
   }
   searchBook() {
+    this.currentPage = 1;
     this.books.addBookName(this.searchText);
     if (this.searchText.length !== 0) {
       this.isLoading = true;
@@ -79,6 +84,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.booksPerPage = pageData.pageSize;
     this.currentPage = pageData.pageIndex + 1;
+    this.books.addPaginationInfo(this.currentPage, this.booksPerPage);
     this.booksSub = this.books
       .getBooks(this.booksPerPage, this.currentPage, this.searchText)
       .subscribe((books: BookResult) => {

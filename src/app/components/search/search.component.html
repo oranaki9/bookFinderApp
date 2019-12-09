@@ -27,7 +27,8 @@
 <mat-paginator
   *ngIf="booksList.length !== 0"
   [length]="totalBooks"
-  [pageSize]="booksPerPage"
+  [(pageSize)]="booksPerPage"
   [pageSizeOptions]="pageSizeOptions"
   (page)="onChangePage($event)"
+  [pageIndex]="currentPage-1"
 ></mat-paginator>

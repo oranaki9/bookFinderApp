@@ -6,7 +6,7 @@ import {
 import { DialogService } from "./dialog.service";
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
-import { BehaviorSubject, Observable } from "rxjs";
+import { BehaviorSubject, Observable, Subject } from "rxjs";
 import { Book, BookResult } from "../components/books-feed/Book.interface";
 
 @Injectable({
@@ -17,6 +17,13 @@ export class BooksService {
   wishListListener: BehaviorSubject<Book[]> = new BehaviorSubject([]);
   booksListener: BehaviorSubject<Book[]> = new BehaviorSubject([]);
   bookNameListener: BehaviorSubject<string> = new BehaviorSubject("");
+  paginationInfoListener: BehaviorSubject<{
+    currentPage: number;
+    bookPerPage: number;
+  }> = new BehaviorSubject<{ currentPage: number; bookPerPage: number }>({
+    currentPage: 1,
+    bookPerPage: 5
+  });
   bookName: string;
   wishList: Book[] = [];
   booksList: Book[] = [];
@@ -26,8 +33,8 @@ export class BooksService {
     this.bookName = bookName;
     this.bookNameListener.next(this.bookName);
   }
-  getBookName(){
-    return this.bookNameListener.asObservable()
+  getBookName() {
+    return this.bookNameListener.asObservable();
   }
   getBooks(
     booksPerPage: number,
@@ -47,6 +54,13 @@ export class BooksService {
   }
   getBooksList() {
     return this.booksListener.asObservable();
+  }
+  addPaginationInfo(currentPage: number, bookPerPage: number) {
+    const paginationInfo = { currentPage, bookPerPage };
+    this.paginationInfoListener.next(paginationInfo);
+  }
+  getPaginationInfo() {
+    return this.paginationInfoListener.asObservable();
   }
   addToWishList(bookId: Book): void {
     const isInWish = this.wishList.find(b => b.id === bookId.id) ? true : false;
